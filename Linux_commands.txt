@@ -1,0 +1,31 @@
+
+1.To find the file path
+
+      -  find . -name "MemoryManagerOnDemand.h"
+
+
+2. Find text only in specific file types/extensions – Returns all the search results
+
+	grep -ir --include=\*.py text_to_search
+
+3. If you want to only see the file names, then add the -l filter
+
+	grep -ilr --include=\*.py text_to_search
+
+     	-H -> with filename     	-h -> without filename
+
+      	-n -> with line number
+
+      	-r -> recursively
+
+	-i -> ignore-case
+	
+	-L -> files with out matches   	-l -> files with matches
+
+4. To get the object dump of .so or .o
+  
+      objdump -D <object file> > <filename to dump>
+
+       eg :- objdump -D graph_ttk_to_flatbuffer > example_ttk_flatbuffer.dump
+
+     

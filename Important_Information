@@ -1,0 +1,74 @@
+
+Compiling C++ code -
+
+	gcc lambda.cc -lstdc++
+_________________________________________________________________________________________________________________________________________________________________________________
+configuring
+
+cd build
+cmake ..
+
+cd ../..
+make -j8
+
+cd topi/python; python3 setup.py install --user; cd ../..
+
+export TVM_HOME=./../../
+export PYTHONPATH=$TVM_HOME/python:$TVM_HOME/topi/python:${PYTHONPATH}
+
+cd examples/ttrt_person_detection/
+
+make clean && make demo_android_ttk
+
+cd ../..
+make -j8
+export TVM_HOME=./../../
+export PYTHONPATH=$TVM_HOME/python:$TVM_HOME/topi/python:${PYTHONPATH}
+cd python; python3 setup.py install --user; cd ..
+cd topi/python; python3 setup.py install --user; cd ../..
+cd examples/ttrt_tdnn_acl_1/
+_________________________________________________________________________________________________________________________________________________________________________________
+
+Docker Workspace
+
+git clone --recursive https://github.com/apache/incubator-tvm tvm
+cd tvm
+sudo docker build -t tvm.demo_android -f docker/Dockerfile.demo_android ./docker
+docker run --pid=host -h tvm -v $PWD:/workspace \
+       -w /workspace -p 9190:9190 --name tvm -it tvm.demo_android bash
+__________________________________________________________________________________________________________________________________________________________________________________
+
+git clone --recursive https://github.com/amitsrivastava78/Tiny-TVM tvm
+
+__________________________________________________________________________________________________________________________________________________________________________________
+
+TVM Test paths :- 
+
+tests/python/frontend/mxnet/test_forward.py
+
+tests/python/relay/test_op_level3.py
+
+topi/tests/python/test_topi_transform.py
+
+__________________________________________________________________________________________________________________________________________________________________________________
+Git Related
+
+Applying patch  				->  	patch -p1 < <<.diff>> , 
+							git apply <<.patch>>
+
+revert all changes and move to head 		-> 	git reset --hard 
+move to revision 				-> 	git reset --hard << revisionid >> 	( eg :- git reset --hard 019da5dae15d2bd13536673ab689203c799629f0)
+						-> 	git checkout << revisionid >>  		( eg :- git checkout 019da5dae15d2bd13536673ab689203c799629f0)
+
+__________________________________________________________________________________________________________________________________________________________________________________
+
+To get CPU info  				->  	cat /proc/cpuinfo
+To Extract .tar.xz file  			->  	tar xf <<.tar.xz file>>
+__________________________________________________________________________________________________________________________________________________________________________________
+To compile arm compute library
+
+export PATH=/opt/android-toolchain/android-toolchain-arm32/bin:$PATH
+
+CXX=clang++ CC=clang scons Werror=0 debug=0 asserts=0 neon=1 opencl=0 os=android arch=armv7a -j8
+
+

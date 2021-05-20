@@ -1,0 +1,99 @@
+
+
+
+GIT commands - 
+
+ -> Git clone
+    
+    git clone <git url> --recursive $FolderName
+     
+    (To copy paste) -> git clone  --recursive
+
+    Eg :- git clone --recursive https://github.com/apache/incubator-tvm tvm_28_10_rev
+          git clone https://github.com/amitsrivastava78/Tiny-TVM --recursive $FolderName
+          git clone --branch code_refactor https://github.com/Huawei-CoTMT/LightweightAI --recursive LightweightAI-20-04
+          git clone --branch tvm-19-03 https://github.com/Huawei-CoTMT/LightweightAI --recursive LightweightAI-18-05
+          git clone https://github.com/Huawei-CoTMT/hmos_lite --recursive hmos-lite-24_11
+          git clone https://github.com/LijoyJ/hmos_lite --recursive hmos-lite-PR_24_11
+          git clone https://github.com/facebookresearch/pytorch3d Pytorch3D
+          git clone https://github.com/facebookresearch/meshrcnn Mesh-R-CNN
+          git clone https://github.com/tensorflow/tensorflow
+
+          git clone --branch code_refactor_acl https://github.com/Dayananda-V/LightweightAI --recursive LightweightAI-daya-21-04
+	
+		  git clone --branch code_refactor https://github.com/LijoyJ/LightweightAI --recursive LightweightAI-28_01
+		  git clone --branch code_refactor  https://github.com/LijoyJ/LightweightAI --recursive LightweightAI-checkin
+		  
+		  git clone https://github.com/LijoyJ/LightweightAI --recursive LightweightAI-checkin
+		  
+		  
+git clone https://github.com/Huawei-CoTMT/ComputeLibrary --recursive ComputeLibrary
+
+git clone https://github.com/huawei-noah/bolt
+
+  -> download code using repo
+
+     repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
+     repo sync -c
+
+  -> To pull the PR
+
+      git pull origin pull/30/head
+          Note - 30 is the PR number
+
+  -> To check out particular branch
+     
+      git clone --branch <branchname> <git url> --recursive $FolderName
+      
+      Eg :- git clone --branch latest_code_28_11 https://github.com/Huawei-CoTMT/hmos_lite --recursive hmos-lite-18_05
+            git clone --branch latest_code_refactor_28_11 https://github.com/LijoyJ/hmos_lite --recursive hmos-lite-16-02
+
+ -> Check-in code
+
+    - git status  
+    - git checkout -b new_br
+    - git add .
+    - git commit -m "Latest hmos code from open source reverted pooling changes"
+    - git push origin code_refactor
+
+
+ -> To move a file to a particular version
+
+   - git checkout <commit id of that version> <file path + Filename>
+                eg:- git checkout 9c8c3c50c5ce93c97b68024e8ef34b2fca3febd0 examples/ttrt_utility/tinytvm/src/cmsis/cmsis.cpp
+
+ -> Move complete code to particular revision
+
+   - git clone [remote_address_here] my_repo
+     cd my_repo
+     git reset --hard [ENTER HERE THE COMMIT HASH YOU WANT]
+
+    Eg :- git clone --recursive https://github.com/apache/incubator-tvm tvm_28_10_rev 
+          cd tvm_28_10_rev
+          git reset --hard 019da5dae15d2bd13536673ab689203c799629f0
+
+
+ -> To get the git log
+
+   - git log
+
+ -> To get the git log of particular file
+  
+   - git log <file path + Filename>
+
+ -> To delete a branch locally
+
+   - git branch -d new_branch
+   - git branch -D new_branch - to delete forcefully
+          Note:- you can delete old branch after creating a new branch
+
+ -> To delete a branch remotely
+
+   - git push origin --delete new_branch
+
+ -> To sync fork with master
+     https://www.earthdatascience.org/courses/intro-to-earth-data-science/git-github/github-collaboration/update-github-repositories-with-changes-by-others/
+
+
+
+
